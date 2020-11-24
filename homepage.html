@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<!-- <html> -->
+	<head>
+		<title>{{t}}</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
+		
+		<link rel="stylesheet" type="text/css"  href="{{ url_for('static',filename='assets/style.css')}}" >
+		<link rel="stylesheet" type="text/css"  href="{{ url_for('static',filename='assets/emoji.css')}}" >
+		<script src="{{ url_for('static',filename='assets/twemoji.min.js')}}"></script>  
+		<script src="{{ url_for('static',filename='assets/emoji.js')}}"></script>
+		<style>
+			body, html {height: 100%}
+			body,h1,h2,h3,h4,h5,h6 {font-family: "Amatic SC", sans-serif}
+		</style>
+	</head>
+<body>
+	<div class="w3-top w3-hide-small">
+		<div class="w3-bar w3-xlarge w3-black w3-opacity w3-hover-opacity-off" id="myNavbar">
+		  <!-- <h1>{{ h }}</h1> -->
+		  <a href="#" class="w3-bar-item w3-button">{{ h }}</a>
+		  <!-- <li class="nav-item dropdown" style="float: right;"> -->
+			<a class="nav-link dropdown-toggle w3-bar w3-xlarge w3-black w3-opacity w3-hover-opacity-off" style="float: right;" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			  <b>{{username}}</b>
+			</a>
+			<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+			  <a class="dropdown-item" href="/logout"><b>Logout</b></a>
+			</div>
+		  <!-- </li> -->
+		</div>
+		
+	</div>
+
+
+	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title" id="exampleModalLongTitle"> <b> + Task </b></h5>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			<div class="modal-body">
+			  ...
+				  <form action="/action" method="POST">
+					<!-- <div class="form-group">
+						<table class="none">
+							<tr>
+							<td><input type="text" name="name" placeholder="Taskname" /></td>
+							<td><textarea name="desc" rows="1" cols="30" placeholder="Enter Description here..." required></textarea></td>
+							<td><input type="text" name="date" placeholder="Date" /></td>
+							<td><input type="text" name="pr" placeholder="Priority" /></td>
+							<td><button type="submit"> Create </button></td>
+							</tr>
+						</table>
+					</div> -->
+				<!-- </form> -->
+
+				  <div class="form-group">
+					<label for="exampleInputEmail1">Task name </label>
+					<input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Task name">
+					<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+				  </div>
+				  <div class="form-group">
+					<label for="exampleInputPassword1">Description</label>
+					<!-- <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"> -->
+					<textarea name="desc" class="form-control" id="exampleInputPassword1" rows="1" cols="30" placeholder="Enter Description here..." required></textarea>
+				  </div>
+				  <div class="form-group">
+					<label for="taskDate">Date</label>
+					<!-- <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"> -->
+					<input type="text" name="date" class="form-control" id="exampleInputDate" placeholder="Date">
+				  </div>
+				  <div class="form-group">
+					<label for="taskPriority">Priority</label>
+					<!-- <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"> -->
+					<input type="text" name="pr" class="form-control" id="exampleInputPr" placeholder="Priority">
+				  </div>
+				  <!-- <div class="form-check">
+					<input type="checkbox" class="form-check-input" id="exampleCheck1">
+					<label class="form-check-label" for="exampleCheck1">Check me out</label>
+				  </div> -->
+				  <button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+
+
+			</div>
+			<!-- <div class="modal-footer"> -->
+			  <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+			  <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+			<!-- </div> -->
+		  </div>
+		</div>
+	</div>
+
+
+
+	<div class="w3-container w3-black w3-padding-64 w3-xxlarge" id="menu">
+		<div class="w3-content">
+		   <h1 class="w3-center w3-jumbo" style="margin-bottom:64px">
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+					<!-- <span class="w3-tag w3-red w3-round">+ Task </span> -->
+					<b>+ Task</b>
+			  	</button>
+			  <!-- <span class="w3-tag w3-red w3-round">+ Task </span> -->
+		  	</h1>
+		  <div id="Pizza" class="w3-container menu w3-padding-32 w3-white">
+				<ul>
+					<li><a href="/list" class="{{ a1 }}">ALL</a></li>
+					<li><a href="/uncompleted" class="{{ a2 }}">Incomplete</a></li>
+					<li><a href="/completed" class="{{ a3 }}">Accomplished</a></li>
+				</ul>
+				<hr>
+				{% if todos[0] %}
+				{% for todo in todos %}
+				<p><a href="./done?_id={{ todo['_id'] }}"><input type="image" src="static/images/{{todo['done']}}.png" alt="Submit ME"></a></p>
+				<h1><b>{{ todo["name"] }}</b> 
+					<span class="w3-right w3-tag w3-dark-grey w3-round">
+						<a href="./remove?_id={{ todo['_id'] }}"><button type="submit">DELETE</button></a>
+					</span>
+				</h1>
+			  	<p class="w3-text-grey">{{ todo["desc"] }}</p>
+			  	<p class="w3-text-grey">{{ todo["pr"] }}</p>
+				  <p class="w3-text-grey">{{ todo["date"] }}</p>
+				<hr>
+				{% endfor %}
+				{% else %}
+					<h1><b>No Tasks in the List !!</b> 
+				{% endif %}
+				<hr/>
+		  	</div>
+		</div>
+	</div>
+	<div class="w3-container w3-padding-64 w3-red w3-grayscale w3-xlarge" id="about">
+		<div class="w3-content">
+		  <div class="w3-row">
+			<div class="w3-col s6">
+			  <h1><b>Developed by</b></h1>
+			  <p>DHIVYAA D - 16PT08</p>
+			  <p>EZHIL MATHY V - 16PT10</p>
+			</div>
+			<div class="w3-col s6">
+			  <h1><b>Developed Using</b></h1>
+			  <p>HTML, CSS</p>
+			  <p>Flask, MongoDB, Python</p>
+			  <p>OAuth2</p>
+			</div>
+		  </div>
+		  <p>GITHUB link : </p>
+		</div>
+	</div>
+	<footer class="w3-center w3-black w3-padding-48 w3-xxlarge">
+		<p>Deployed in - HEROKU</p>
+	</footer>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+flask
+bson
+pymongo
+bcrypt
+gunicorn
+dnspython
+flask-dance
+blinker
